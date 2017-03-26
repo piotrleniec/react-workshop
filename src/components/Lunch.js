@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { removeLunch } from '../actions/lunches'
 
-export default ({ lunch, onCloseClick }) => (
+const Lunch = ({ lunch, removeLunch }) => (
   <div className="panel panel-primary">
     <div className="panel-heading">
       {lunch.restaurantName} - {lunch.time}
-      <a className="close" onClick={onCloseClick}>
+      <a className="close" onClick={removeLunch}>
         <span>&times;</span>
       </a>
     </div>
@@ -17,3 +19,13 @@ export default ({ lunch, onCloseClick }) => (
     </ul>
   </div>
 )
+
+const mapStateToProps = (state, ownProps) => ({
+  lunch: state.lunches.find(lunch => lunch.id === ownProps.lunchId)
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  removeLunch: () => { dispatch(removeLunch(ownProps.lunchId)) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lunch)

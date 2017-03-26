@@ -1,4 +1,4 @@
-import { SET_LUNCHES } from '../constants'
+import { SET_LUNCHES, REMOVE_LUNCH } from '../constants'
 
 const setLunches = lunches => ({
   type: SET_LUNCHES,
@@ -10,3 +10,8 @@ export const fetchLunches = () => dispatch => {
     .then(response => response.json())
     .then(lunches => { dispatch(setLunches(lunches)) })
 }
+
+export const removeLunch = lunchId => ({
+  type: REMOVE_LUNCH,
+  lunchId
+})

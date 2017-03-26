@@ -9,21 +9,12 @@ class Lunches extends React.Component {
     this.props.fetchLunches()
   }
 
-  removeLunch = lunchId => {
-    this.setState({
-      lunches: this.state.lunches.filter(lunch => lunch.id !== lunchId)
-    })
-  }
-
   render() {
     return (
       <div>
         {this.props.lunches.map(lunch => (
           <div key={lunch.id} className="col-xs-6">
-            <Lunch
-              lunch={lunch}
-              onCloseClick={() => { this.removeLunch(lunch.id) }}
-            />
+            <Lunch lunchId={lunch.id} />
           </div>
         ))}
       </div>
