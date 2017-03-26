@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Lunches from './components/Lunches'
+import Routes from './Routes'
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,7 +15,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Lunches />
+        <Routes />
       </div>
     );
   }
