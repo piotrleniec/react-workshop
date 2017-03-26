@@ -1,3 +1,10 @@
+import { SET_LUNCHES } from '../constants'
+
 export default (state = [], action) => {
-  return state
+  switch (action.type) {
+    case SET_LUNCHES:
+      return action.lunches
+    default:
+      return state
+  }
 }

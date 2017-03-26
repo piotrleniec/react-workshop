@@ -1,18 +1,12 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Lunch from './Lunch'
+import { fetchLunches } from '../actions/lunches'
 
 class Lunches extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = { lunches: [] }
-  }
-
   componentDidMount() {
-    fetch('/lunches.json')
-      .then(response => response.json())
-      .then(lunches => { this.setState({ lunches }) })
+    this.props.fetchLunches()
   }
 
   removeLunch = lunchId => {
@@ -24,9 +18,7 @@ class Lunches extends React.Component {
   render() {
     return (
       <div>
-        {JSON.stringify(this.props.lunches)}
-
-        {this.state.lunches.map(lunch => (
+        {this.props.lunches.map(lunch => (
           <div key={lunch.id} className="col-xs-6">
             <Lunch
               lunch={lunch}
@@ -43,4 +35,8 @@ const mapStateToProps = state => ({
   lunches: state.lunches
 })
 
-export default connect(mapStateToProps)(Lunches)
+const mapDispatchToProps = dispatch => bindActionCreators(
+  { fetchLunches }, dispatch
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lunches)
