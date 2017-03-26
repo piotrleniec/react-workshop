@@ -1,7 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Lunch from './Lunch'
 
-export default class extends React.Component {
+class Lunches extends React.Component {
   constructor(props) {
     super(props)
 
@@ -23,6 +24,8 @@ export default class extends React.Component {
   render() {
     return (
       <div>
+        {JSON.stringify(this.props.lunches)}
+
         {this.state.lunches.map(lunch => (
           <div key={lunch.id} className="col-xs-6">
             <Lunch
@@ -35,3 +38,9 @@ export default class extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  lunches: state.lunches
+})
+
+export default connect(mapStateToProps)(Lunches)
