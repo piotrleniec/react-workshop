@@ -1,7 +1,9 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import classNames from 'classnames'
+import { setCurrentUser } from '../authentication'
 
-export default class extends React.Component {
+class LogInForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -22,6 +24,12 @@ export default class extends React.Component {
     return this.state.name.length === 0
   }
 
+  logIn = () => {
+    setCurrentUser({ name: this.state.name })
+
+    this.props.history.push('/')
+  }
+
   render() {
     let errors
     if (this.showError) {
@@ -40,7 +48,11 @@ export default class extends React.Component {
                 <input className="form-control" onChange={this.setName} />
                 {errors}
               </div>
-              <button className="btn btn-block btn-primary" disabled={this.disableLogInButton}>
+              <button
+                className="btn btn-block btn-primary"
+                disabled={this.disableLogInButton}
+                onClick={this.logIn}
+              >
                 Log in
               </button>
             </div>
@@ -50,3 +62,5 @@ export default class extends React.Component {
     )
   }
 }
+
+export default withRouter(LogInForm)
