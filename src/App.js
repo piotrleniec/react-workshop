@@ -1,27 +1,9 @@
 import React, { Component } from 'react';
-import Lunch from './components/Lunch'
+import Lunches from './components/Lunches'
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = { lunches: [] }
-  }
-
-  componentDidMount() {
-    fetch('/lunches.json')
-      .then(response => response.json())
-      .then(lunches => { this.setState({ lunches }) })
-  }
-
-  removeLunch = lunchId => {
-    this.setState({
-      lunches: this.state.lunches.filter(lunch => lunch.id !== lunchId)
-    })
-  }
-
   render() {
     return (
       <div className="App">
@@ -33,14 +15,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        {this.state.lunches.map(lunch => (
-          <div key={lunch.id} className="col-xs-6">
-            <Lunch
-              lunch={lunch}
-              onCloseClick={() => { this.removeLunch(lunch.id) }}
-            />
-          </div>
-        ))}
+        <Lunches />
       </div>
     );
   }
