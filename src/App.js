@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Lunch from './components/Lunch'
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,6 +14,13 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <div className="col-xs-6">
+          <Lunch />
+        </div>
+        <div className="col-xs-6">
+          <Lunch />
+        </div>
       </div>
     );
   }
