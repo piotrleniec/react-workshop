@@ -3,29 +3,35 @@ import Lunch from './components/Lunch'
 import logo from './logo.svg';
 import './App.css';
 
-const lunches = [
-  {
-    restaurantName: 'Du-za Mi-ha',
-    time: '13:30',
-    users: [
-      'Krzysztof Rybka',
-      'Kamil Poprawa',
-      'Adam Paca',
-      'Michał Markiewicz'
-    ]
-  },
-  {
-    restaurantName: 'Kwadrans po nieparzystej',
-    time: '13:15',
-    users: [
-      'Piotr Paściak',
-      'Piotr Leniec',
-      'Piotr Rybarczyk'
-    ]
-  }
-]
-
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      lunches: [
+        {
+          restaurantName: 'Du-za Mi-ha',
+          time: '13:30',
+          users: [
+            'Krzysztof Rybka',
+            'Kamil Poprawa',
+            'Adam Paca',
+            'Michał Markiewicz'
+          ]
+        },
+        {
+          restaurantName: 'Kwadrans po nieparzystej',
+          time: '13:15',
+          users: [
+            'Piotr Paściak',
+            'Piotr Leniec',
+            'Piotr Rybarczyk'
+          ]
+        }
+      ]
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -37,7 +43,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        {lunches.map(lunch => (
+        {this.state.lunches.map(lunch => (
           <div key={lunch.restaurantName} className="col-xs-6">
             <Lunch lunch={lunch} />
           </div>
