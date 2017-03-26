@@ -7,31 +7,13 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      lunches: [
-        {
-          id: 1,
-          restaurantName: 'Du-za Mi-ha',
-          time: '13:30',
-          users: [
-            'Krzysztof Rybka',
-            'Kamil Poprawa',
-            'Adam Paca',
-            'Michał Markiewicz'
-          ]
-        },
-        {
-          id: 2,
-          restaurantName: 'Kwadrans po nieparzystej',
-          time: '13:15',
-          users: [
-            'Piotr Paściak',
-            'Piotr Leniec',
-            'Piotr Rybarczyk'
-          ]
-        }
-      ]
-    }
+    this.state = { lunches: [] }
+  }
+
+  componentDidMount() {
+    fetch('/lunches.json')
+      .then(response => response.json())
+      .then(lunches => { this.setState({ lunches }) })
   }
 
   removeLunch = lunchId => {
