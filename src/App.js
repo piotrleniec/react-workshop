@@ -10,6 +10,7 @@ class App extends Component {
     this.state = {
       lunches: [
         {
+          id: 1,
           restaurantName: 'Du-za Mi-ha',
           time: '13:30',
           users: [
@@ -20,6 +21,7 @@ class App extends Component {
           ]
         },
         {
+          id: 2,
           restaurantName: 'Kwadrans po nieparzystej',
           time: '13:15',
           users: [
@@ -30,6 +32,12 @@ class App extends Component {
         }
       ]
     }
+  }
+
+  removeLunch = lunchId => {
+    this.setState({
+      lunches: this.state.lunches.filter(lunch => lunch.id !== lunchId)
+    })
   }
 
   render() {
@@ -44,8 +52,11 @@ class App extends Component {
         </p>
 
         {this.state.lunches.map(lunch => (
-          <div key={lunch.restaurantName} className="col-xs-6">
-            <Lunch lunch={lunch} />
+          <div key={lunch.id} className="col-xs-6">
+            <Lunch
+              lunch={lunch}
+              onCloseClick={() => { this.removeLunch(lunch.id) }}
+            />
           </div>
         ))}
       </div>
