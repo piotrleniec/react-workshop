@@ -3,6 +3,28 @@ import Lunch from './components/Lunch'
 import logo from './logo.svg';
 import './App.css';
 
+const lunches = [
+  {
+    restaurantName: 'Du-za Mi-ha',
+    time: '13:30',
+    users: [
+      'Krzysztof Rybka',
+      'Kamil Poprawa',
+      'Adam Paca',
+      'Michał Markiewicz'
+    ]
+  },
+  {
+    restaurantName: 'Kwadrans po nieparzystej',
+    time: '13:15',
+    users: [
+      'Piotr Paściak',
+      'Piotr Leniec',
+      'Piotr Rybarczyk'
+    ]
+  }
+]
+
 class App extends Component {
   render() {
     return (
@@ -15,12 +37,11 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <div className="col-xs-6">
-          <Lunch />
-        </div>
-        <div className="col-xs-6">
-          <Lunch />
-        </div>
+        {lunches.map(lunch => (
+          <div key={lunch.restaurantName} className="col-xs-6">
+            <Lunch lunch={lunch} />
+          </div>
+        ))}
       </div>
     );
   }
